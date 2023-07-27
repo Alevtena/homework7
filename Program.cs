@@ -119,18 +119,20 @@ void Show2dArray(int[,] array)
     }
 }
 
-double AverageColums(int[,] array)
+double[] AverageColums(int[,] array, int rows, int colums)
 {
-    for (int j=0; j < array.GetLength(0); j++)
+    double[] AvarageArray = new double[colums];
+    Console.Write ($"Среднее ариифметическое каждого столбца - ");
+    for (int j=0; j < colums; j++)
     {
-        int average = 0; 
-        for (int i=0; i < array.GetLength(1); i++)
-        {
+        double average = 0; 
+        for (int i=0; i < rows; i++)
             average += array[i,j];
-        }
-        double srAr = average/array.GetLength(1);
-        return average;
+        double srAr = Math.Round(average/rows, 2);
+        AvarageArray[j] = srAr;
+        Console.Write(srAr + "; ");
     }
+    return AvarageArray;
 }
 Console.Write("Input a rows of array" + " ");
 int rows = Convert.ToInt32(Console.ReadLine());
@@ -139,5 +141,4 @@ int colums = Convert.ToInt32(Console.ReadLine());
 
 int[,] myArray = CreateRandom2dArray(rows,colums);
 Show2dArray (myArray);
-AverageColums(myArray);
-
+AverageColums(myArray, rows, colums);
